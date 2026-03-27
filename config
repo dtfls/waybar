@@ -49,7 +49,7 @@
     }
   },
   "custom/nowplaying": {
-    "exec": "/home/chira/.config/waybar/now-playing.sh",
+    "exec": "$HOME/.config/waybar/now-playing.sh",
     "return-type": "json",
     "interval": 1,
     "hide-empty-text": true,
@@ -59,7 +59,7 @@
     "tooltip": true
   },
   "custom/cava": {
-    "exec": "/home/chira/.config/waybar/cava-waybar.sh",
+    "exec": "$HOME/.config/waybar/cava-waybar.sh",
     "restart-interval": 1,
     "hide-empty-text": true,
     "tooltip": false

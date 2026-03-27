@@ -2,7 +2,7 @@
 
 set -uo pipefail
 
-config_file="/home/chira/.config/waybar/cava-waybar.conf"
+config_file="$HOME/.config/waybar/cava-waybar.conf"
 bars=10
 cava_pid=""
 cava_fd=""
