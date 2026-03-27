@@ -1,0 +1,145 @@
+@define-color bg rgba(11, 11, 11, 0);
+@define-color surface rgba(51, 51, 51, 0.94);
+@define-color surface_strong rgba(81, 81, 81, 0.94);
+@define-color border rgba(144, 144, 144, 0.20);
+@define-color text #909090;
+@define-color text_dim rgba(144, 144, 144, 0.58);
+@define-color base #0b0b0b;
+
+* {
+  font-family: "JetBrainsMono Nerd Font", "JetBrainsMono", monospace;
+  font-size: 12px;
+  min-height: 0;
+  border: none;
+}
+
+window#waybar {
+  background: @bg;
+  color: @text;
+}
+
+tooltip {
+  background: rgba(11, 11, 11, 0.96);
+  border: 1px solid @border;
+  border-radius: 10px;
+}
+
+tooltip label {
+  color: @text;
+}
+
+#workspaces,
+#window,
+#custom-nowplaying,
+#idle_inhibitor,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#clock,
+#tray {
+  background: @surface;
+  color: @text;
+  border: 1px solid @border;
+  border-radius: 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#workspaces {
+  padding: 2px 5px;
+}
+
+#workspaces button {
+  color: @text_dim;
+  background: transparent;
+  border-radius: 9px;
+  padding: 0 11px;
+  margin: 3px 2px;
+  transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+  background: rgba(144, 144, 144, 0.10);
+  color: @text;
+}
+
+#workspaces button.active {
+  background: @surface_strong;
+  color: @base;
+}
+
+#workspaces button.visible {
+  background: rgba(81, 81, 81, 0.78);
+  color: @text;
+}
+
+#workspaces button.special,
+#workspaces button.urgent {
+  background: @surface_strong;
+  color: @base;
+}
+
+#workspaces button.empty {
+  color: rgba(144, 144, 144, 0.42);
+}
+
+#window {
+  padding: 0 14px;
+  color: @text;
+}
+
+window#waybar.empty #window {
+  background: transparent;
+  border-color: transparent;
+  color: @text_dim;
+}
+
+#custom-nowplaying {
+  padding: 0 14px;
+  background: @surface_strong;
+  color: @base;
+  font-weight: 700;
+}
+
+#custom-nowplaying.paused {
+  background: @surface;
+  color: @text;
+}
+
+#idle_inhibitor,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#clock,
+#tray {
+  padding: 0 12px;
+}
+
+#idle_inhibitor.activated,
+#network.disconnected,
+#pulseaudio.muted {
+  background: @surface_strong;
+  color: @base;
+}
+
+#clock {
+  background: @surface_strong;
+  color: @base;
+  font-weight: 700;
+}
+
+#tray {
+  padding-right: 9px;
+  padding-left: 9px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  background: @surface_strong;
+  border-radius: 8px;
+}

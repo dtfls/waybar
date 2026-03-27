@@ -1,0 +1,87 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 38,
+  "margin-top": 10,
+  "margin-left": 12,
+  "margin-right": 12,
+  "spacing": 8,
+  "fixed-center": true,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "custom/nowplaying"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "pulseaudio",
+    "clock",
+    "tray"
+  ],
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "show-special": true,
+    "special-visible-only": true,
+    "sort-by": "number",
+    "format": "{name}",
+    "persistent-workspaces": {
+      "*": 5
+    }
+  },
+  "hyprland/window": {
+    "separate-outputs": true,
+    "format": "{}",
+    "max-length": 48,
+    "rewrite": {
+      "(.*) - Mozilla Firefox": "$1",
+      "(.*) - Firefox": "$1",
+      "(.*) - Google Chrome": "$1",
+      "(.*) - Chromium": "$1",
+      "(.*) - VSCodium": "$1",
+      "(.*) - Visual Studio Code": "$1",
+      "(.*) - kitty": "$1",
+      "(.*) - foot": "$1"
+    }
+  },
+  "custom/nowplaying": {
+    "exec": "/home/chira/.config/waybar/now-playing.sh",
+    "return-type": "json",
+    "interval": 1,
+    "hide-empty-text": true,
+    "on-click": "playerctl play-pause",
+    "on-click-middle": "playerctl previous",
+    "on-click-right": "playerctl next",
+    "tooltip": true
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "CPU {usage}%",
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 5,
+    "format": "RAM {}%",
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "VOL {volume}%",
+    "format-bluetooth": "VOL {volume}% BT",
+    "format-muted": "VOL mute",
+    "format-source": "MIC {volume}%",
+    "format-source-muted": "MIC mute",
+    "on-click": "pavucontrol",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%a %d %b  %H:%M}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
+    "on-click": "zenity --calendar --title='Calendario' --width=320 --height=260"
+  },
+  "tray": {
+    "spacing": 10
+  }
+}
