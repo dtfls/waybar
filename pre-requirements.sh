@@ -9,6 +9,7 @@ fi
 
 required_packages=(
   waybar
+  cava
   jq
   playerctl
   zenity

@@ -38,15 +38,7 @@ fi
 
 case "$status" in
   Playing)
-    sec=$(date +%S | sed 's/^0//')
-    [ -z "$sec" ] && sec=0
-    frame=$((sec % 4))
-    case "$frame" in
-      0) icon="|>" ;;
-      1) icon="||>" ;;
-      2) icon="|||" ;;
-      *) icon=">||" ;;
-    esac
+    icon=">"
     class="playing"
     ;;
   Paused)

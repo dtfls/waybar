@@ -1,21 +1,24 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 38,
+  "height": 39,
   "margin-top": 10,
   "margin-left": 12,
   "margin-right": 12,
   "spacing": 8,
   "fixed-center": true,
   "modules-left": [
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "hyprland/window"
   ],
   "modules-center": [
-    "custom/nowplaying"
+    "custom/nowplaying",
+    "custom/cava"
   ],
   "modules-right": [
     "cpu",
     "memory",
+    "network",
     "pulseaudio",
     "clock",
     "tray"
@@ -55,6 +58,12 @@
     "on-click-right": "playerctl next",
     "tooltip": true
   },
+  "custom/cava": {
+    "exec": "/home/chira/.config/waybar/cava-waybar.sh",
+    "restart-interval": 1,
+    "hide-empty-text": true,
+    "tooltip": false
+  },
   "cpu": {
     "interval": 2,
     "format": "CPU {usage}%",
@@ -64,6 +73,16 @@
     "interval": 5,
     "format": "RAM {}%",
     "tooltip": false
+  },
+  "network": {
+    "interval": 5,
+    "format-wifi": "NET {essid} {signalStrength}%",
+    "format-ethernet": "NET cabo",
+    "format-linked": "NET link",
+    "format-disconnected": "NET off",
+    "tooltip-format-wifi": "{essid}\n{ipaddr}/{cidr}",
+    "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
+    "tooltip-format-disconnected": "Sem conexao"
   },
   "pulseaudio": {
     "scroll-step": 5,
