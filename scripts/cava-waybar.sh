@@ -2,7 +2,8 @@
 
 set -uo pipefail
 
-config_file="$HOME/.config/waybar/cava-waybar.conf"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+config_file="$script_dir/../cava-waybar.conf"
 bars=10
 cava_pid=""
 cava_fd=""

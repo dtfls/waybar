@@ -5,6 +5,9 @@
 @define-color text #909090;
 @define-color text_dim rgba(144, 144, 144, 0.58);
 @define-color base #0b0b0b;
+@define-color alert #c75b5b;
+@define-color net_ok rgba(13, 144, 35, 0.72);
+@define-color net_bad rgba(199, 91, 91, 0.82);
 
 * {
   font-family: "JetBrainsMono Nerd Font", "JetBrainsMono", monospace;
@@ -34,7 +37,7 @@ tooltip label {
 #custom-cava,
 #cpu,
 #memory,
-#network,
+#custom-network,
 #pulseaudio,
 #clock,
 #tray {
@@ -125,14 +128,30 @@ window#waybar.empty #window {
 
 #cpu,
 #memory,
-#network,
+#custom-network,
 #pulseaudio,
 #clock,
 #tray {
   padding: 0 12px;
 }
 
-#network.disconnected,
+#custom-network {
+  min-width: 20px;
+  font-size: 13px;
+}
+
+#custom-network.connected {
+  color: @text;
+  background: @surface;
+  border-color: @net_ok;
+}
+
+#custom-network.disconnected {
+  background: @surface;
+  color: @text;
+  border-color: @net_bad;
+}
+
 #pulseaudio.muted {
   background: @surface_strong;
   color: @base;

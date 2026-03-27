@@ -18,7 +18,7 @@
   "modules-right": [
     "cpu",
     "memory",
-    "network",
+    "custom/network",
     "pulseaudio",
     "clock",
     "tray"
@@ -44,12 +44,13 @@
       "(.*) - Chromium": "$1",
       "(.*) - VSCodium": "$1",
       "(.*) - Visual Studio Code": "$1",
+      "(.*) - Windsurf": "$1",
       "(.*) - kitty": "$1",
       "(.*) - foot": "$1"
     }
   },
   "custom/nowplaying": {
-    "exec": "$HOME/.config/waybar/now-playing.sh",
+    "exec": "$HOME/.config/waybar/scripts/now-playing.sh",
     "return-type": "json",
     "interval": 1,
     "hide-empty-text": true,
@@ -59,7 +60,7 @@
     "tooltip": true
   },
   "custom/cava": {
-    "exec": "$HOME/.config/waybar/cava-waybar.sh",
+    "exec": "$HOME/.config/waybar/scripts/cava-waybar.sh",
     "restart-interval": 1,
     "hide-empty-text": true,
     "tooltip": false
@@ -74,15 +75,13 @@
     "format": "RAM {}%",
     "tooltip": false
   },
-  "network": {
-    "interval": 5,
-    "format-wifi": "NET {essid} {signalStrength}%",
-    "format-ethernet": "NET cabo",
-    "format-linked": "NET link",
-    "format-disconnected": "NET off",
-    "tooltip-format-wifi": "{essid}\n{ipaddr}/{cidr}",
-    "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
-    "tooltip-format-disconnected": "Sem conexao"
+  "custom/network": {
+    "exec": "$HOME/.config/waybar/scripts/network-status.sh",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "$HOME/.config/waybar/scripts/network-copy-ip.sh",
+    "on-click-right": "$HOME/.config/waybar/scripts/open-impala.sh",
+    "tooltip": true
   },
   "pulseaudio": {
     "scroll-step": 5,

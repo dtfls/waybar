@@ -10,11 +10,13 @@ fi
 required_packages=(
   waybar
   cava
+  impala
   jq
   playerctl
   zenity
   pavucontrol
   ttf-jetbrains-mono-nerd
+  wl-clipboard
 )
 
 missing_packages=()
@@ -50,6 +52,8 @@ required_binaries=(
   zenity
   pavucontrol
   pactl
+  impala
+  wl-copy
 )
 
 echo
