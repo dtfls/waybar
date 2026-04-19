@@ -53,9 +53,11 @@ fi
 case "$status" in
   Playing)
     class="playing"
+    icon="󰎆"
     ;;
   Paused)
     class="paused"
+    icon="󰏤"
     ;;
   *)
     exit 0
@@ -63,7 +65,7 @@ case "$status" in
 esac
 
 jq -cRn \
-  --arg text "$text_body" \
+  --arg text "$icon $text_body" \
   --arg tooltip "$tooltip" \
   --arg class "$class" \
   '{text: $text, tooltip: $tooltip, class: $class}'

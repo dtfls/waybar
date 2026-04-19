@@ -1,105 +1,108 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 39,
-  "margin-top": 10,
-  "margin-left": 12,
-  "margin-right": 12,
-  "spacing": 8,
-  "fixed-center": true,
+  "height": 24,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "margin-bottom": 0,
+  "spacing": 4,
+  "reload_style_on_change": true,
   "modules-left": [
-    "hyprland/workspaces",
-    "hyprland/window"
+    "sway/workspaces",
+    "sway/mode"
   ],
   "modules-center": [
-    "custom/nowplaying",
-    "custom/cava"
+    "custom/nowplaying"
   ],
   "modules-right": [
+    "network",
+    "custom/mic",
+    "pulseaudio",
     "cpu",
     "memory",
-    "custom/network",
-    "pulseaudio",
-    "clock",
-    "tray"
+    "custom/github",
+    "tray",
+    "clock"
   ],
-  "hyprland/workspaces": {
+  "sway/workspaces": {
     "all-outputs": true,
-    "show-special": true,
-    "special-visible-only": true,
-    "sort-by": "number",
-    "format": "{name}",
-    "persistent-workspaces": {
-      "*": 5
-    }
+    "disable-scroll": true,
+    "format": "{name}"
   },
-  "hyprland/window": {
-    "separate-outputs": true,
-    "format": "{}",
-    "max-length": 48,
-    "rewrite": {
-      "(.*) - Mozilla Firefox": "$1",
-      "(.*) - Firefox": "$1",
-      "(.*) - Google Chrome": "$1",
-      "(.*) - Chromium": "$1",
-      "(.*) - VSCodium": "$1",
-      "(.*) - Visual Studio Code": "$1",
-      "(.*) - Windsurf": "$1",
-      "(.*) - kitty": "$1",
-      "(.*) - foot": "$1"
-    }
+  "sway/mode": {
+    "format": "{}"
   },
   "custom/nowplaying": {
     "exec": "$HOME/.config/waybar/scripts/now-playing.sh",
     "return-type": "json",
     "interval": 1,
     "hide-empty-text": true,
+    "max-length": 56,
     "on-click": "playerctl play-pause",
     "on-click-middle": "playerctl previous",
     "on-click-right": "playerctl next",
     "tooltip": true
   },
-  "custom/cava": {
-    "exec": "$HOME/.config/waybar/scripts/cava-waybar.sh",
-    "restart-interval": 1,
-    "hide-empty-text": true,
-    "tooltip": false
-  },
-  "cpu": {
-    "interval": 2,
-    "format": "CPU {usage}%",
-    "tooltip": false
-  },
-  "memory": {
-    "interval": 5,
-    "format": "RAM {}%",
-    "tooltip": false
-  },
-  "custom/network": {
-    "exec": "$HOME/.config/waybar/scripts/network-status.sh",
+  "custom/github": {
+    "exec": "$HOME/.config/waybar/scripts/github-prs.sh",
     "return-type": "json",
-    "interval": 2,
-    "on-click": "$HOME/.config/waybar/scripts/network-copy-ip.sh",
-    "on-click-right": "$HOME/.config/waybar/scripts/open-impala.sh",
+    "interval": 180,
+    "signal": 8,
+    "on-click": "xdg-open \"https://github.com/pulls?q=is%3Apr+is%3Aopen+%28author%3A%40me+OR+assignee%3A%40me+OR+review-requested%3A%40me%29\"",
+    "on-click-middle": "pkill -SIGRTMIN+8 waybar",
+    "on-click-right": "xdg-open \"https://github.com/pulls?q=is%3Apr+is%3Aopen+review-requested%3A%40me\"",
+    "tooltip": true
+  },
+  "network": {
+    "interval": 5,
+    "format-wifi": "󰖩 {signalStrength}%",
+    "format-ethernet": "󰈀",
+    "format-linked": "󰈀",
+    "format-disconnected": "󰖪 OFF",
+    "tooltip-format-wifi": "{essid}\n{ipaddr}",
+    "tooltip-format-ethernet": "{ifname}\n{ipaddr}",
+    "tooltip-format-disconnected": "Network disconnected"
+  },
+  "custom/mic": {
+    "exec": "$HOME/.config/waybar/scripts/mic-status.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
     "tooltip": true
   },
   "pulseaudio": {
     "scroll-step": 5,
-    "format": "VOL {volume}%",
-    "format-bluetooth": "VOL {volume}% BT",
-    "format-muted": "VOL mute",
-    "format-source": "MIC {volume}%",
-    "format-source-muted": "MIC mute",
-    "on-click": "pavucontrol",
-    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 OFF",
+    "format-icons": {
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol"
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "󰍛 {usage}%",
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 5,
+    "format": "󰘚 {}%",
+    "tooltip": false
   },
   "clock": {
     "interval": 1,
-    "format": "{:%a %d %b  %H:%M}",
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
-    "on-click": "zenity --calendar --title='Calendario' --width=320 --height=260"
+    "format": "󰥔 {:%d/%m %H:%M}",
+    "tooltip-format": "<big>{:%A %d %B %Y}</big>\n<tt>{calendar}</tt>"
   },
   "tray": {
-    "spacing": 10
+    "spacing": 8
   }
 }
